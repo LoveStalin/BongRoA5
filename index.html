@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10A5 Basketball</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #1e90ff;
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .card {
+    width: 150px;
+    height: 220px;
+    border: 3px solid #000;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    background: yellow;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  /* Modal chung */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+  }
+
+  .modal-content h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .modal-content .icon {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .modal-content p {
+    margin-bottom: 20px;
+  }
+
+  .btn-next {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .btn-next:hover {
+    opacity: 0.8;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+  }
+  .modal-content {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeIn 1.0s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Modal nhập mật mã */
+.modal-password {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-password .modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-password input {
+  padding: 8px;
+  width: 80%;
+  margin: 10px 0;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.modal-password button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: black;
+  color: white;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="card" onclick="openPasswordModal('modal1')">Minh Tiến</div>
+<div class="card" onclick="openPasswordModal('modal2')">Minh Sơn</div>
+<div class="card" onclick="openPasswordModal('modal3')">Lê Nam</div>
+<div class="card" onclick="openPasswordModal('modal4')">Chương</div>
+
+</div>
+
+<!-- Modal Minh Tiến -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal1')">&times;</span>
+    <span class="icon">🏀</span>
+    <h2>Xuân Thành thầm thì cho Minh Tiến nghe nè!</h2>
+    <p>Xin chào Tiến nhé.Trong đây thì tao muốn nói cho mày rằng...<br>
+      Cảm ơn mày trong suốt thời gian qua đã cùng tao chơi bóng rổ,thậm chí còn chia sẻ cho tao những điều hữu ích<br>
+      Mày cũng giúp tao một phần trong việc học tập khi còn học toán cùng cô Hải<br>
+      Tuy tao với mày cũng ít khi tiếp xúc,cũng như việc gặp nhau chưa nhiều<br>
+      Nhưng tao đã coi mày là bạn thân của tao rồi cu kkk<br>
+      Suốt thời gian qua thì anh em mình cũng chơi bóng rổ với nhau cũng nhiều<br>
+      Tao mong là sau này,tao với mày và anh em sẽ cùng nhau phát triển về mọi mặt<br>
+      Và mối quan hệ của anh em sẽ ngày càng tốt lên😁</p>
+    <button class="btn-next" onclick="closeModal('modal1')">Tiếp</button>
+  </div>
+</div>
+<!-- Modal nhập mật mã -->
+<div id="passwordModal" class="modal-password">
+  <div class="modal-content">
+    <h3>Nhập mật mã</h3>
+    <input type="password" id="passwordInput" placeholder="Nhập mã...">
+    <br>
+    <button onclick="checkPassword()">Xác nhận</button>
+    <button onclick="closePasswordModal()">Hủy</button>
+  </div>
+</div>
+<!-- Modal Minh Sơn -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal2')">&times;</span>
+    <span class="icon">🏀</span>
+    <h2>Xuân Thành thầm thì cho Minh Sơn nghe nè!</h2>
+    <p>Chào anh zai trum iso kkk.Tao cũng có nhiều lời muốn nói cho mày đấy<br>
+      Hồi trước tao ngu quá đcm,tao yêu cả ny của m từ hồi lớp 6.<br>
+      Vậy mà mày vẫn bỏ qua cho tao được,thực sự lúc đó tao cũng chỉ coi mày như bạn cùng lớp thôi<br>
+      Nhưng bây giờ,tao coi mày như một thằng bạn thân,như một thằng anh trai<br>
+      Tao cũng không ngờ là mày sẽ bỏ qua quá khứ của tao như vậy ấy<br>
+      Tao cũng cảm ơn mày khi mày chấp nhận tính cách của tao hồi cấp 2<br>
+      Hồi đấy mày toàn xin lỗi tao suốt...Bây giờ nghĩ lại,tao lại thấy xấu hổ cho chính mình<br>
+      Mày với anh em bóng rổ dạy tao nhiều thứ vãi ra.Đã thế mày còn hiểu tính tao nữa<br>
+      Mỗi lần tao bị anh em chửi là mày nhắn tin an ủi tao ngay<br>
+      Mày chính là thằng bạn thân nhất của tao trong nhóm bạn thân này<br>
+      Tuy là lâu lâu anh em mình có chửi nhau tý lúc chs game tý😓😓😓<br>
+      Nhưng mà tao thấy mày chất lượng nhất trong nhóm Bóng Rổ rồi hihi<br>
+      Chơi bóng rổ cũng vậy,mày chơi mà mày không chửi hay trách móc tao<br>
+      Tao cảm thấy chơi với mày dễ chịu hơn nhiều so với chơi với anh em<br>
+      Tao với mày chơi với nhau từ cấp 1 đến bây giờ...<br>
+      Tao cũng cảm thấy áy náy với những hàng động của tao hồi quá khứ với mày.<br>
+      Tao mong mày bỏ qua những hành động thời quá khứ của tao.
+      Tao cảm ơn mày vì đồng hành với tao suốt thời gian vừa qua,và trong tương lai sắp tới.<br>
+      Đến bây giờ,tao mới nhận ra rằng,mày là người bạn thân nhất của tao...chứ không phải Chương.<br>
+    </p>
+    <button class="btn-next" onclick="closeModal('modal2')">Tiếp</button>
+  </div>
+</div>
+<!-- Modal nhập mật mã -->
+<div id="passwordModal" class="modal-password">
+  <div class="modal-content">
+    <h3>Nhập mật mã</h3>
+    <input type="password" id="passwordInput" placeholder="Nhập mã...">
+    <br>
+    <button onclick="checkPassword()">Xác nhận</button>
+    <button onclick="closePasswordModal()">Hủy</button>
+  </div>
+</div>
+
+<!-- Modal Lê Nam -->
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal3')">&times;</span>
+    <span class="icon">🏀</span>
+    <h2>Xuân Thành thầm thì cho Lê Nam nghe nè!</h2>
+    <p>Xin chào anh cả sigma của nhóm bóng rổ kkk<br>
+      Thằng bé đang trưởng thành có vài điều muốn nói với anh đây<br>
+      Tao muốn nói với mày là:Tao cảm ơn mày vì mọi thứ.<br>
+      Tao cảm ơn mày vì đã giúp tao hiểu được tình yêu là như nào<br>
+      Tao bị lợi dụng trong tình yêu như nào<br>
+      Tao nên làm gì để có mindset trưởng thành hơn<br>
+      Tao cũng xin lỗi mày vì thời gian qua đã làm mày buồn<br>
+      Vì tao không quá lười tập bóng rổ<br>
+      Thực sự thì tao cũng không biết tại sao<br>
+      Tao lại cảm thấy khó chịu và tức giận khi chúng mày chửi tao<br>
+      Lúc đó tao chỉ muốn chúng mày im đi,vì đã thua còn bị chửi<br>
+      Nên tao lại cảm thấy nản đi,cộng với việc bị vấn đề về tình yêu nữa<br>
+      Tao đã quay lại cách cũ để quên con Phương Anh đi<br>
+      Tao nghĩ chuyện này sẽ thành công<br>
+      Dù sao đi nữa thì,cảm ơn mày vì tất cả.<br>
+      Xin lỗi mày vì mọi lỗi lầm của tao.<br>
+      Tao mong mối quan hệ của anh em mình sẽ không bị tổn thương nữa.<br>
+
+    </p>
+    <button class="btn-next" onclick="closeModal('modal3')">Tiếp</button>
+  </div>
+</div>
+<!-- Modal nhập mật mã -->
+<div id="passwordModal" class="modal-password">
+  <div class="modal-content">
+    <h3>Nhập mật mã</h3>
+    <input type="password" id="passwordInput" placeholder="Nhập mã...">
+    <br>
+    <button onclick="checkPassword()">Xác nhận</button>
+    <button onclick="closePasswordModal()">Hủy</button>
+  </div>
+</div>
+
+<!-- Modal Chương -->
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal4')">&times;</span>
+    <span class="icon">🏀</span>
+    <h2>Xuân Thành thầm thì cho Chương nghe nè!</h2>
+    <p>Xin chào sỹ zương Nguyễn Hĩu Chương<br>
+      Pụi ơi,ông phải nghe tôi nói cái này nhé<br>
+      Tao cảm ơn mày vì đã giúp tao nhiều điều<br>
+      Nhớ quá trình cardio hồi lớp 8 không?<br>
+      Nhờ mày cả đấy,Chương ạ<br>
+      Nhớ hôm tối trời mưa,tao,mày với Minh Sơn chơi bóng rổ không?<br>
+      Trời mưa tầm tã,xong anh em ướt như chuột lột,vẫn chơi như bthg<br>
+      Tao vẫn nhớ khoảnh khắc đấy vcl.<br>
+      Nhưng dạo gần đây tao hơi chểnh mảng về việc chơi bóng rổ nhỉ?<br>
+      Cho tao xin lỗi mày nhé<br>
+      Tao làm anh em thất vọng rồi<br>
+      Nhiều lúc anh em mình cũng chửi,cãi nhau ấy<br>
+      Tao cũng thấy là mình nên thay đổi,nhưng mà tao không thể thay đổi được<br>
+      Nghe chửi lúc đang cáu,thì tao cũng...hơi nóng giận nên chửi lại<br>
+      Thực sự thì tao cảm thấy nhanh nản lắm<br>
+      Tại vì tao cảm thấy,tao vốn không thuộc về thể thao đâu<br>
+      Trước giờ,tao cảm thấy tao chơi bóng rổ không phải cho chính mình<br>
+      Tao muốn chơi bóng rổ để được gặp anh em,bạn bè<br>
+      Tại tao là thằng ko muốn ở nhà chút nào mà<br>
+      Tao cũng chẳng hy vọng mình giỏi bóng rổ,cũng chẳng hy vọng mình chơi thể thao tốt<br>
+      Cái sở thích của tao vốn là những thứ kiểu lịch sử,quân sự bla bla<br>
+      Chơi bóng rổ thì vui thật,nhưng mày thấy không?<br>
+      Tao đi chơi với chúng mày vui hơn hay chơi bóng rổ với chúng mày vui hơn?<br>
+      Dù sao thì cảm ơn mày vì đã giúp tao cải thiện bóng rổ như bây giờ<br>
+      Về chuyện con Phương Anh...tao nghĩ mày không phải lo đâu<br>
+      Tao áp dụng cách cũ là ok rồi<br>
+      Dù sao thì<br>
+      Cảm ơn mày vì mọi thứ<br>
+      Xin lỗi mày vì tất cả<br>
+    </p>
+    <button class="btn-next" onclick="closeModal('modal4')">Tiếp</button>
+  </div>
+</div>
+<!-- Modal nhập mật mã -->
+<!-- Modal nhập mật mã -->
+<!-- Modal nhập mật mã (DUY NHẤT) -->
+<div id="passwordModal" class="modal-password">
+  <div class="modal-content">
+    <h3>Nhập mật mã</h3>
+    <!-- Không che: dùng type="text" -->
+    <input type="text" id="passwordInput" placeholder="Nhập mã...">
+    <br>
+    <button onclick="checkPassword()">Xác nhận</button>
+    <button onclick="closePasswordModal()">Hủy</button>
+  </div>
+</div>
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = "flex";
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    let modals = document.querySelectorAll(".modal");
+    modals.forEach(m => {
+      if (event.target == m) {
+        m.style.display = "none";
+      }
+    });
+  }
+  let targetModal = null; 
+
+// Bảng mật mã cho từng người
+const passwords = {
+  modal1: "Nguyễn Minh Tiến", // Minh Tiến
+  modal2: "Chiến-Hồng", // Minh Sơn
+  modal3: "Tuấn-Hòa", // Lê Nam
+  modal4: "Chính-Mai"  // Chương
+};
+
+function openPasswordModal(modalId) {
+  targetModal = modalId;
+  document.getElementById("passwordModal").style.display = "flex";
+  document.getElementById("passwordInput").value = "";
+}
+
+function closePasswordModal() {
+  document.getElementById("passwordModal").style.display = "none";
+}
+
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if (input === passwords[targetModal]) {
+    closePasswordModal();
+    openModal(targetModal); 
+  } else {
+    alert("Địt mẹ kẻ giả mạo à?CÚTTTTT!");
+  }
+}
+
+</script>
+</body>
+</html>
