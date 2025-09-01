@@ -11,6 +11,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>10A5 Basketball</title>
+<div class="basketball b1">🏀</div>
+<div class="basketball b2">🏀</div>
+<div class="basketball b3">🏀</div>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -48,7 +51,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
   .card:hover {
     transform: scale(1.05);
-  }
+  animation: bounce 0.5s;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
 
   /* Modal chung */
   .modal {
@@ -199,6 +207,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 body, .card, .modal-content h2 {
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 1px;
+}
+.basketball {
+  position: fixed;
+  font-size: 40px;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.3;
+}
+
+.b1 { top: 20%; left: 10%; animation-delay: 0s; }
+.b2 { top: 60%; left: 80%; animation-delay: 2s; }
+.b3 { top: 40%; left: 50%; animation-delay: 4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
 }
 </style>
 <!-- Google Tag Manager (noscript) -->
