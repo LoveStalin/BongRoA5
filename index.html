@@ -56,15 +56,17 @@
   }
 
   .modal-content {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-  }
-
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeIn 0.4s forwards;
+}
   .modal-content h2 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -165,6 +167,26 @@
     width: 60vw;
     height: 90vw;
     font-size: 16px; /* chữ cố định để dễ đọc */
+  }
+}
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;       /* chiếm gần full màn */
+    max-width: none;  /* bỏ giới hạn cứng */
+    padding: 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 16px;  /* tiêu đề nhỏ lại */
+  }
+
+  .modal-content p {
+    font-size: 14px;  /* chữ nhỏ hơn */
+  }
+
+  .btn-next {
+    font-size: 12px;  
+    padding: 8px 15px;
   }
 }
 </style>
